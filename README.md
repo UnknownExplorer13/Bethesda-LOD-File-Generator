@@ -35,7 +35,8 @@ struct lodsetting
 {
     signed short west;    // 00 - The westernmost cell of the worldspace
     signed short south;   // 02 - The southernmost cell of the worldspace
-    signed int size;      // 04 - A power of 2 less than or equal to 256 (How many cells in the North/East direction to generate LOD for)
+    signed int size;      // 04 - A power of 2 less than or equal to 256
+						  //      (How many cells in the North/East direction to generate LOD for)
     signed int lowLOD;    // 08 - Lowest LOD level (4, 8, 16, 32; Default: 4)
     signed int highLOD;   // 0C - Highest LOD level (4, 8, 16, 32; Default: 32)
 };
@@ -48,7 +49,8 @@ struct lodsetting
 {
     signed short west;    // 00 - The westernmost cell of the worldspace
     signed short south;   // 02 - The southernmost cell of the worldspace
-    signed int size;      // 04 - A power of 2 less than or equal to 512 (How many cells in the North/East direction to generate LOD for)
+    signed int size;      // 04 - A power of 2 less than or equal to 512
+						  //      (How many cells in the North/East direction to generate LOD for)
     signed int lowLOD;    // 08 - Lowest LOD level (4, 8, 16, 32; Default: 4)
     signed int highLOD;   // 0C - Highest LOD level (4, 8, 16, 32; Default: 32)
 };
@@ -57,7 +59,7 @@ struct lodsetting
 ### Starfield
 A slightly updated format compared to older Creation Engine `.lod` files.
 
-I'm still gathereing info on how exactly these files are structured.
+I'm still gathering info on how exactly these files are structured.
 ```
 struct lodsetting
 {
