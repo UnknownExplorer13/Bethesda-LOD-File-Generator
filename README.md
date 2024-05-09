@@ -36,7 +36,7 @@ struct lodsetting
     signed short west;    // 00 - The westernmost cell of the worldspace
     signed short south;   // 02 - The southernmost cell of the worldspace
     signed int size;      // 04 - A power of 2 less than or equal to 256
-			  //      (How many cells in the North/East direction to generate LOD for)
+                          //      (How many cells in the North/East direction to generate LOD for)
     signed int lowLOD;    // 08 - Lowest LOD level (4, 8, 16, 32; Default: 4)
     signed int highLOD;   // 0C - Highest LOD level (4, 8, 16, 32; Default: 32)
 };
@@ -50,7 +50,7 @@ struct lodsetting
     signed short west;    // 00 - The westernmost cell of the worldspace
     signed short south;   // 02 - The southernmost cell of the worldspace
     signed int size;      // 04 - A power of 2 less than or equal to 512
-			  //      (How many cells in the North/East direction to generate LOD for)
+                          //      (How many cells in the North/East direction to generate LOD for)
     signed int lowLOD;    // 08 - Lowest LOD level (4, 8, 16, 32; Default: 4)
     signed int highLOD;   // 0C - Highest LOD level (4, 8, 16, 32; Default: 32)
 };
@@ -65,7 +65,9 @@ struct lodsetting
 {
     signed int objBoundMinX;  // 00 - The worldspace object bounds' Min X value
     signed int objBoundMinY;  // 04 - The worldspace object bounds' Min Y value
-    signed int size;          // 08 - Difference between worldspace object bounds' Min/Max values?
+    signed int size;          // 08 - Using Math.Abs(a - b) using the two largest values from Min/Max
+                              //      gives about the right results but there are inconsistencies in
+                              //      in some .lod files that makes me doubt this is 100% correct
     signed int unk1;          // 0C - Engine might ignore these values? 00000000
     signed int unk2;          // 10 - Engine might ignore these values? 00000000
 };
