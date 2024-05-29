@@ -1,7 +1,7 @@
 <div align="center">
 <h1><u>Bethesda LOD File Generator</u></h1>
 <img src="Bethesda LOD File Generator/Resources/Icon.ico" />
-<p style="font-size:1.25em"><i>Take in the sights of your world!</i></p>
+<p style="font-size:20px"><i>Take in the sights of your world!</i></p>
 </div>
 
 <h2>About</h2>
