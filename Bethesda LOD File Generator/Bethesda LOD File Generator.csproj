@@ -52,6 +52,7 @@
     <Compile Include="ConvertToLOD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Worldspaces.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icon.ico" />
