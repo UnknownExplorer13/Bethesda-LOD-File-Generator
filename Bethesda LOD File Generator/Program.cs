@@ -14,14 +14,14 @@ namespace Bethesda_LOD_File_Generator
 			}
 			else if (args.Length == 1)
 			{
-				switch (Path.GetExtension(args[0]))
+				switch (Path.GetExtension(args[0]).ToUpper())
 				{
-					case ".txt":
+					case ".TXT":
 						{
 							Converter.ConvertToLOD(args[0]);
 							return;
 						}
-					case ".lod":
+					case ".LOD":
 						{
 							Converter.ConvertFromLOD(args[0]);
 							return;
