@@ -41,14 +41,14 @@ namespace Bethesda_LOD_File_Generator
 			{
 				foreach (var arg in args)
 				{
-					switch (Path.GetExtension(arg))
+					switch (Path.GetExtension(arg).ToUpper())
 					{
-						case ".txt":
+						case ".TXT":
 							{
 								Converter.ConvertToLOD(arg, false);
 								break;
 							}
-						case ".lod":
+						case ".LOD":
 							{
 								Converter.ConvertFromLOD(arg, false);
 								break;
