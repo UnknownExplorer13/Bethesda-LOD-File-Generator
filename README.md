@@ -48,7 +48,7 @@ Bethesda games developed after the release of Skyrim use <code>.lod</code> files
     <tr>
         <td>Starfield</td>
         <td>Not Supported</td>
-        <td>Not Supported</td>
+        <td>Supported</td>
     </tr>
 </table>
 
@@ -56,7 +56,7 @@ Bethesda games developed after the release of Skyrim use <code>.lod</code> files
 <p>
 Technically the creation of <code>.lod</code> files for Fallout 76 is supported but there's no point adding support for the full <code>size</code> value of <code>512</code> as users are not allowed to create proper mods for the game.
 
-Starfield support is planned as the files are very similar to older Creation Engine <code>.lod</code> files, however I need to look into where the settings stored in the files are gathered/calculated from. Until the Creation Kit is released I can't be certain the info I gather on these files is correct.
+Starfield extraction support was completed on <code>2024-07-14</code>. For creation support I need to find out how the <code>size</code> value stored in the files are gathered/calculated before I start working on it.
 </p>
 
 <h2>LODSettings File Structure</h2>

@@ -7,14 +7,18 @@ namespace Bethesda_LOD_File_Generator
 {
 	internal partial class Converter
 	{
+		static readonly int lodV1_Len = 16;
+		static readonly int lodV2_Len = 20;
+
 		public static void ConvertFromLOD(string file, bool doLogging = true)
 		{
 			string worldID = Path.GetFileNameWithoutExtension(file);
-			short x = 0;
-			short y = 0;
+			var x = 0;
+			var y = 0;
 			int size = 0;
 			int lowLOD = 0;
 			int highLOD = 0;
+			bool lodV2File = false;
 
 			// Correctly capitalize worldspace names for known worldspaces
 			worldID = CheckForKnownWorldspace(worldID);
@@ -25,23 +29,57 @@ namespace Bethesda_LOD_File_Generator
 			#region Read Input
 			using (BinaryReader br = new BinaryReader(File.OpenRead(file)))
 			{
-				Byte[] data = br.ReadBytes(16);
-				x = BitConverter.ToInt16(data, 0);
-				y = BitConverter.ToInt16(data, 2);
-				size = BitConverter.ToInt32(data, 4);
-				lowLOD = BitConverter.ToInt32(data, 8);
-				highLOD = BitConverter.ToInt32(data, 12);
+				int fileSize = (int)br.BaseStream.Length;
+
+				if (fileSize == lodV1_Len)
+				{
+					x = br.ReadInt16();
+					y = br.ReadInt16();
+					size = br.ReadInt32();
+					lowLOD = br.ReadInt32();
+					highLOD = br.ReadInt32();
+				}
+				else if (fileSize == lodV2_Len)
+				{
+					x = br.ReadInt32();
+					y = br.ReadInt32();
+					size = br.ReadInt32();
+					lowLOD = br.ReadInt32();
+					highLOD = br.ReadInt32();
+					lodV2File = true;
+				}
+				else
+				{
+					Console.WriteLine($"ERROR ON INPUT FILE");
+					Console.WriteLine(worldID);
+					Console.WriteLine("----------------------------------------------------------------------------------------");
+					Console.WriteLine("File is not a valid Creation Engine 1 or 2 LOD file.");
+					Console.WriteLine("Maybe you're trying to convert an unused (and therefore unsupported) Starfield LOD file?");
+					Console.ReadLine();
+					return;
+				}
 			}
 
 			if (doLogging)
 			{
 				Console.WriteLine();
 				Console.WriteLine($"Worldspace: {worldID}");
-				Console.WriteLine($"West: {x}");
-				Console.WriteLine($"South: {y}");
-				Console.WriteLine($"Width/Height: {size}");
-				Console.WriteLine($"Lowest LOD: {lowLOD}");
-				Console.WriteLine($"Highest LOD: {highLOD}");
+				if (lodV2File)
+				{
+					Console.WriteLine($"objBound Min X: {x}");
+					Console.WriteLine($"objBound Min Y: {y}");
+					Console.WriteLine($"Size: {size}");
+					Console.WriteLine($"Unk1: {lowLOD}");
+					Console.WriteLine($"Unk2: {highLOD}");
+				}
+				else
+				{
+					Console.WriteLine($"West: {x}");
+					Console.WriteLine($"South: {y}");
+					Console.WriteLine($"Width/Height: {size}");
+					Console.WriteLine($"Lowest LOD: {lowLOD}");
+					Console.WriteLine($"Highest LOD: {highLOD}");
+				}
 				Console.WriteLine();
 			}
 			#endregion
@@ -52,11 +90,22 @@ namespace Bethesda_LOD_File_Generator
 			using (StreamWriter sw = new StreamWriter(File.Open(fileName, FileMode.Create)))
 			{
 				sw.WriteLine($"Worldspace: {worldID}");
-				sw.WriteLine($"West: {x}");
-				sw.WriteLine($"South: {y}");
-				sw.WriteLine($"Width/Height: {size}");
-				sw.WriteLine($"Lowest LOD: {lowLOD}");
-				sw.WriteLine($"Highest LOD: {highLOD}");
+				if (lodV2File)
+				{
+					sw.WriteLine($"objBound Min X: {x}");
+					sw.WriteLine($"objBound Min Y: {y}");
+					sw.WriteLine($"Size: {size}");
+					sw.WriteLine($"Unk1: {lowLOD}");
+					sw.WriteLine($"Unk2: {highLOD}");
+				}
+				else
+				{
+					sw.WriteLine($"West: {x}");
+					sw.WriteLine($"South: {y}");
+					sw.WriteLine($"Width/Height: {size}");
+					sw.WriteLine($"Lowest LOD: {lowLOD}");
+					sw.WriteLine($"Highest LOD: {highLOD}");
+				}
 			}
 
 			if (doLogging)
