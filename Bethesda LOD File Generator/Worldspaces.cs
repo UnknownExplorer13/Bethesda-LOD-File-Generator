@@ -14,7 +14,7 @@ namespace Bethesda_LOD_File_Generator
 																  "ccBGSFO4040VRWorkshopGridWorld", "ccBGSFO4117GNRPlaza", "ccFSVFO4004VRWorkshopGNRPlaza", "ccFSVFO4005VRWorkshopDesertIsland", 
 																  "ccFSVFO4006VRWorkshopWasteland" };
 
-		// Existing worldspace names in the Starfield ESM files
+		// Existing worldspace names in Starfield
 		public static List<string> Starfield = new List<string>() { "akilacity", "CydoniaCity", "DefaultSpaceshipLandingOverlay", "DefaultWorld", "DR001World", "DR002World", "DR003CaveWorldD",
 																	"DR006World03", "DR007World", "DR008World", "DR009World", "DR010World", "DR011World", "DR012World", "DR014GarageWorldB",
 																	"DR015World", "DR016World", "DR017World", "DR018World01", "DR020WorldNew", "DR021World", "DR022World", "DR023World", "DR024World",
