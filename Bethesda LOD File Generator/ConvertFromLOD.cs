@@ -50,7 +50,7 @@ namespace Bethesda_LOD_File_Generator
 				}
 				else
 				{
-					Console.WriteLine($"ERROR ON INPUT FILE");
+					Console.WriteLine("ERROR ON INPUT FILE");
 					Console.WriteLine(worldID);
 					Console.WriteLine("----------------------------------------------------------------------------------------");
 					Console.WriteLine("File is not a valid Creation Engine 1 or 2 LOD file.");
